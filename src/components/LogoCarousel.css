@@ -1,0 +1,266 @@
+/* LogoCarousel.css */
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 40px 0;
+  position: relative;
+  margin: 20px 0;
+}
+
+.carousel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  z-index: 2;
+}
+
+.carousel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00d4ff, #007bff);
+  z-index: 2;
+}
+
+.carousel-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  width: fit-content;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 120px;
+  margin: 0 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.carousel-item:hover::before {
+  left: 100%;
+}
+
+.carousel-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 123, 255, 0.2);
+}
+
+.carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(30%);
+  transition: all 0.3s ease;
+}
+
+.carousel-item:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+}
+
+/* Animation de défilement */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Effets de dégradé aux extrémités */
+.carousel::before,
+.carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #f8f9fa, transparent);
+}
+
+.carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #f8f9fa, transparent);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .carousel-item {
+    width: 160px;
+    height: 100px;
+    margin: 0 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-item {
+    width: 140px;
+    height: 90px;
+    margin: 0 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    padding: 30px 0;
+  }
+
+  .carousel-item {
+    width: 120px;
+    height: 80px;
+    margin: 0 10px;
+  }
+
+  .carousel::before,
+  .carousel::after {
+    width: 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel {
+    padding: 20px 0;
+  }
+
+  .carousel-item {
+    width: 100px;
+    height: 70px;
+    margin: 0 8px;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .carousel::before,
+  .carousel::after {
+    width: 50px;
+  }
+
+  .carousel-track {
+    animation: scroll 20s linear infinite;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item {
+    width: 80px;
+    height: 60px;
+    margin: 0 6px;
+  }
+
+  .carousel::before,
+  .carousel::after {
+    width: 30px;
+  }
+}
+
+/* Optionnel : Ajouter un titre si vous voulez */
+.carousel-title {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-title h2 {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.carousel-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  border-radius: 2px;
+}
+
+.carousel-title p {
+  font-size: 1.1rem;
+  color: #6c757d;
+  margin-top: 20px;
+}
+
+/* Optionnel : Compteur de partenaires */
+.partners-count {
+  display: block;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 5px 15px;
+  background: #007bff;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Pour une meilleure accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    animation: none;
+  }
+}
+
+/* Animation au chargement */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.carousel {
+  animation: fadeIn 0.8s ease-out;
+}

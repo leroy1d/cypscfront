@@ -1,0 +1,326 @@
+/* components/Impact.css */
+
+.coordination-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.coordination-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+.section-title p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
+.coordination-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: 40px 0;
+}
+
+.grid-row {
+  display: grid;
+  gap: 30px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.top-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.middle-row {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottom-row {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.coord-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coord-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.2);
+  border-color: var(--primary-color);
+}
+
+.coord-card h3 {
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Couleurs différentes pour chaque niveau */
+.top-row .coord-card {
+  background: linear-gradient(135deg, #fff, #f0f7ff);
+  border-left: 4px solid #e74c3c;
+}
+
+.middle-row .coord-card {
+  background: linear-gradient(135deg, #fff, #f0fff4);
+  border-left: 4px solid #27ae60;
+}
+
+.bottom-row .coord-card {
+  background: linear-gradient(135deg, #fff, #fff0f0);
+  border-left: 4px solid #f39c12;
+}
+
+/* Lignes de connexion */
+.connection-lines {
+  position: relative;
+  height: 60px;
+  margin: 10px 0;
+}
+
+.line-vertical {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  animation: pulse 2s infinite;
+}
+
+.line-horizontal {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent);
+  transform: translateY(-50%);
+  animation: pulse 2s infinite;
+}
+
+.middle-lines .line-vertical {
+  height: 60px;
+}
+
+/* Animation des lignes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Légende */
+.coordination-legend {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.coordination-legend p {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .coord-card {
+    padding: 25px 15px;
+    min-height: 160px;
+  }
+
+  .coord-card h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .coordination-section {
+    padding: 60px 0;
+  }
+
+  .grid-row {
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .top-row {
+    grid-template-columns: 1fr;
+  }
+
+  .middle-row {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .bottom-row {
+    grid-template-columns: 1fr;
+  }
+
+  .coord-card {
+    min-height: 140px;
+    padding: 20px;
+  }
+
+  .connection-lines {
+    display: none; /* Cacher les lignes sur mobile */
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+
+  .section-title p {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .coordination-section {
+    padding: 40px 0;
+  }
+
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .section-title p {
+    font-size: 0.9rem;
+  }
+
+  .coord-card {
+    min-height: 120px;
+    padding: 15px;
+  }
+
+  .coord-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .coordination-legend p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Animation d'entrée */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.coord-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.top-row .coord-card:nth-child(1) { animation-delay: 0.1s; }
+.top-row .coord-card:nth-child(2) { animation-delay: 0.2s; }
+.top-row .coord-card:nth-child(3) { animation-delay: 0.3s; }
+.middle-row .coord-card:nth-child(1) { animation-delay: 0.4s; }
+.middle-row .coord-card:nth-child(2) { animation-delay: 0.5s; }
+.bottom-row .coord-card:nth-child(1) { animation-delay: 0.6s; }
+.bottom-row .coord-card:nth-child(2) { animation-delay: 0.7s; }
+
+/* Effet de survol amélioré */
+.coord-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.coord-card:hover::before {
+  opacity: 1;
+}
+
+/* Style pour les petits écrans */
+@media (max-width: 768px) {
+  .coord-card::before {
+    display: none; /* Désactiver l'effet de bordure sur mobile pour de meilleures performances */
+  }
+}

@@ -1,0 +1,278 @@
+.pan-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: #333;
+}
+
+.page {
+  padding: 40px;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: white;
+  break-inside: avoid;
+  page-break-after: always;
+}
+
+/* Typographie */
+h1, h2, h3, h4 {
+  color: #003366;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.2rem; text-align: center; }
+h2 { font-size: 1.8rem; border-bottom: 2px solid #ffcc00; padding-bottom: 8px; }
+h3 { font-size: 1.4rem; }
+h4 { font-size: 1.2rem; font-style: italic; }
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+/* Page couverture */
+.couverture {
+  text-align: center;
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.republique h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.english {
+  font-style: italic;
+  color: #666;
+}
+
+.titre-principal {
+  margin-top: 4rem;
+}
+
+.mois {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.titre-principal h2 {
+  border: none;
+  font-size: 2.5rem;
+  margin: 0.5rem 0;
+}
+
+/* Portraits */
+.portraits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.portrait-item {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.portrait-placeholder {
+  width: 150px;
+  height: 150px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+}
+
+.nom {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.titre {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Tableaux */
+.table-abrev, .table-processus, .table-obstacles {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.table-abrev td, .table-processus th, .table-processus td, .table-obstacles th, .table-obstacles td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.table-abrev tr:nth-child(even), .table-processus tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tableau-scroll {
+  overflow-x: auto;
+}
+
+/* Citations */
+.citation {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: #003366;
+  border-left: 4px solid #ffcc00;
+  padding-left: 20px;
+  margin: 20px 0;
+}
+
+/* Défis */
+.defi {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+/* Théorie du changement */
+.theorie-changement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.si, .alors {
+  padding: 20px;
+  background-color: #f0f7ff;
+  border-radius: 8px;
+}
+
+.si h4, .alors h4 {
+  color: #003366;
+  margin-top: 0;
+}
+
+/* Axes */
+.axe {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-left: 4px solid #ffcc00;
+  background-color: #fafafa;
+}
+
+/* Budget */
+.budget-total {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #003366;
+  margin: 30px 0;
+}
+
+.budget-total-en {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.budget-detail {
+  background-color: #f0f7ff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.tableau-budget {
+  background-color: #fff;
+  padding: 15px;
+  margin: 15px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Chiffre clé */
+.chiffre-cle {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.grand-chiffre {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #003366;
+  margin: 0;
+}
+
+/* Schéma placeholder */
+.schema-placeholder {
+  background-color: #f0f0f0;
+  padding: 50px;
+  text-align: center;
+  border: 2px dashed #999;
+  margin: 20px 0;
+}
+
+.photo-placeholder {
+  background-color: #f0f0f0;
+  padding: 30px;
+  text-align: center;
+  border: 2px dashed #999;
+  margin: 30px 0;
+  font-style: italic;
+}
+
+/* Contacts */
+.contacts {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+}
+
+.contacts h3 {
+  color: white;
+}
+
+.contact-info p {
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .page {
+    padding: 20px;
+  }
+  
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  
+  .theorie-changement {
+    grid-template-columns: 1fr;
+  }
+  
+  .portraits {
+    grid-template-columns: 1fr;
+  }
+  
+  .grand-chiffre {
+    font-size: 3rem;
+  }
+}
+
+@media print {
+  .page {
+    page-break-after: always;
+    box-shadow: none;
+    border: none;
+  }
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
