@@ -21,7 +21,7 @@ import PlanActionNational from './components/PlanActionNational';
 // import StatisticsForm from './components/statistique';
 
 // Configuration axios
-axios.defaults.baseURL = 'http://192.168.179.20:5005';
+axios.defaults.baseURL = 'https://ypsbackend.vercel.app';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

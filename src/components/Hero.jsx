@@ -7,7 +7,7 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const API_BASE_URL = 'http://192.168.179.20:5005';
+  const API_BASE_URL = 'https://ypsbackend.vercel.app';
 
 // Modifier la fonction fetchBackgrounds (vers ligne 20-40)
 

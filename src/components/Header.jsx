@@ -13,11 +13,11 @@ const Header = () => {
 
   const loadLogo = async () => {
     try {
-      const response = await fetch('http://192.168.179.20:5005/api/logo');
+      const response = await fetch('https://ypsbackend.vercel.app/api/logo');
       if (response.ok) {
         const data = await response.json();
         if (!data.is_default) {
-          setLogoUrl(`http://192.168.179.20:5005${data.logo_url}`);
+          setLogoUrl(`https://ypsbackend.vercel.app${data.logo_url}`);
         }
       }
     } catch (error) {
@@ -27,7 +27,7 @@ const Header = () => {
 
   const loadSiteSettings = async () => {
     try {
-      const response = await fetch('http://192.168.179.20:5005/api/frontend/settings');
+      const response = await fetch('https://ypsbackend.vercel.app/api/frontend/settings');
       if (response.ok) {
         const data = await response.json();
         if (data.site_title) {

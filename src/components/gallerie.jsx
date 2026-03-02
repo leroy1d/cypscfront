@@ -1,4 +1,4 @@
-import { apiService } from '../../backend/api';
+import { apiService } from '../../../backend/api';
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {
@@ -44,7 +44,7 @@ const Gallery = () => {
   const videoRef = useRef(null);
   const previewVideoRef = useRef(null);
   const token = localStorage.getItem('token');
-  const API_BASE_URL = 'http://192.168.179.20:5005';
+  const API_BASE_URL = 'https://ypsbackend.vercel.app';
 
   // Charger la bibliothèque média
   useEffect(() => {

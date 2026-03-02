@@ -4,7 +4,7 @@ const SettingsInit = () => {
   const initializeSettings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://192.168.179.20:5005/api/settings/init-table', {
+      const response = await fetch('https://ypsbackend.vercel.app/api/settings/init-table', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

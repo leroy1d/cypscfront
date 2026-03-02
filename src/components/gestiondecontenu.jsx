@@ -777,7 +777,7 @@ const uploadImage = async () => {
           type: determineMediaType(url)
         };
 
-        const response = await fetch('http://192.168.179.20:5005/api/media/url', {
+        const response = await fetch('https://ypsbackend.vercel.app/api/media/url', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

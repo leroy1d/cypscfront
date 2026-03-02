@@ -20,7 +20,7 @@ const Causes = () => {
   const [error, setError] = useState(null);
   const [selectedCause, setSelectedCause] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const API_BASE_URL = 'http://192.168.179.20:5005';
+  const API_BASE_URL = 'https://ypsbackend.vercel.app';
 
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const Causes = () => {
 
   const fetchCauses = async () => {
     try {
-      const response = await fetch(`http://192.168.179.20:5005/api/frontend/causes?limit=8`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/causes?limit=8`);
       if (!response.ok) {
         throw new Error('Erreur lors du chargement des causes');
       }

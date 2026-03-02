@@ -45,7 +45,7 @@ const Settings = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
 
-      const response = await fetch('http://192.168.179.20:5005/api/settings', {
+      const response = await fetch('https://ypsbackend.vercel.app/api/settings', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -128,10 +128,10 @@ const Settings = () => {
     if (!url) return null;
     if (url.startsWith('http')) return url;
     if (url.startsWith('/uploads')) {
-      return `http://192.168.179.20:5005${url}`;
+      return `https://ypsbackend.vercel.app${url}`;
     }
     if (url.startsWith('/')) {
-      return `http://192.168.179.20:5005${url}`;
+      return `https://ypsbackend.vercel.app${url}`;
     }
     return url;
   };
@@ -148,7 +148,7 @@ const Settings = () => {
         const formData = new FormData();
         formData.append('file', files[0]);
 
-        const response = await fetch('http://192.168.179.20:5005/api/upload', {
+        const response = await fetch('https://ypsbackend.vercel.app/api/upload', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -178,7 +178,7 @@ const Settings = () => {
           const fileFormData = new FormData();
           fileFormData.append('file', files[i]);
 
-          const response = await fetch('http://192.168.179.20:5005/api/upload', {
+          const response = await fetch('https://ypsbackend.vercel.app/api/upload', {
             method: 'POST',
             headers: {
               'Authorization': `Bearer ${token}`
@@ -207,7 +207,7 @@ const Settings = () => {
         const formData = new FormData();
         formData.append('file', files[0]);
 
-        const response = await fetch('http://192.168.179.20:5005/api/upload', {
+        const response = await fetch('https://ypsbackend.vercel.app/api/upload', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`
@@ -315,7 +315,7 @@ const Settings = () => {
         const token = localStorage.getItem('token');
         const fileName = slideToRemove.image.split('/').pop();
 
-        const response = await fetch(`http://192.168.179.20:5005/api/medias?url=${encodeURIComponent(slideToRemove.image)}`, {
+        const response = await fetch(`https://ypsbackend.vercel.app/api/medias?url=${encodeURIComponent(slideToRemove.image)}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -324,7 +324,7 @@ const Settings = () => {
         if (response.ok) {
           const medias = await response.json();
           if (medias.length > 0) {
-            await fetch(`http://192.168.179.20:5005/api/medias/${medias[0].id}`, {
+            await fetch(`https://ypsbackend.vercel.app/api/medias/${medias[0].id}`, {
               method: 'DELETE',
               headers: {
                 'Authorization': `Bearer ${token}`
@@ -353,7 +353,7 @@ const Settings = () => {
   const saveSetting = async (key, value) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch('http://192.168.179.20:5005/api/settings', {
+      await fetch('https://ypsbackend.vercel.app/api/settings', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -403,7 +403,7 @@ const Settings = () => {
         const token = localStorage.getItem('token');
         const fileName = urlToDelete.split('/').pop();
 
-        const response = await fetch(`http://192.168.179.20:5005/api/medias?url=${encodeURIComponent(urlToDelete)}`, {
+        const response = await fetch(`https://ypsbackend.vercel.app/api/medias?url=${encodeURIComponent(urlToDelete)}`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -412,7 +412,7 @@ const Settings = () => {
         if (response.ok) {
           const medias = await response.json();
           if (medias.length > 0) {
-            await fetch(`http://192.168.179.20:5005/api/medias/${medias[0].id}`, {
+            await fetch(`https://ypsbackend.vercel.app/api/medias/${medias[0].id}`, {
               method: 'DELETE',
               headers: {
                 'Authorization': `Bearer ${token}`
@@ -486,7 +486,7 @@ const Settings = () => {
 
       // Sauvegarder chaque paramètre
       const promises = allSettings.map(setting =>
-        fetch('http://192.168.179.20:5005/api/settings', {
+        fetch('https://ypsbackend.vercel.app/api/settings', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,

@@ -157,11 +157,11 @@ const Article = () => {
     }
 
     if (url.startsWith('/')) {
-      return `http://192.168.179.20:5005${url}`;
+      return `https://ypsbackend.vercel.app${url}`;
     }
 
     if (url.startsWith('uploads/')) {
-      return `http://192.168.179.20:5005/${url}`;
+      return `https://ypsbackend.vercel.app/${url}`;
     }
 
     return url;

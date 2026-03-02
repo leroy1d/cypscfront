@@ -98,7 +98,7 @@ const MediaGallery = ({
     if (media.url.startsWith('http')) {
       window.open(media.url, '_blank');
     } else {
-      window.open(`http://192.168.179.20:5005${media.url}`, '_blank');
+      window.open(`https://ypsbackend.vercel.app${media.url}`, '_blank');
     }
     onDownload?.(media);
   };
@@ -114,7 +114,7 @@ const MediaGallery = ({
         <div className="media-thumb" onClick={() => handleMediaClick(media)}>
           {isImage ? (
             <img 
-              src={media.url.startsWith('http') ? media.url : `http://192.168.179.20:5005${media.url}`}
+              src={media.url.startsWith('http') ? media.url : `https://ypsbackend.vercel.app${media.url}`}
               alt={media.titre}
               onError={(e) => {
                 e.target.src = '/images/default-media.jpg';
@@ -452,7 +452,7 @@ const MediaGallery = ({
             <div className="preview-body">
               {selectedMedia.type === 'image' ? (
                 <img 
-                  src={selectedMedia.url.startsWith('http') ? selectedMedia.url : `http://192.168.179.20:5005${selectedMedia.url}`}
+                  src={selectedMedia.url.startsWith('http') ? selectedMedia.url : `https://ypsbackend.vercel.app${selectedMedia.url}`}
                   alt={selectedMedia.titre}
                   className="preview-image"
                 />
@@ -460,7 +460,7 @@ const MediaGallery = ({
                 <div className="preview-video">
                   <video controls>
                     <source 
-                      src={selectedMedia.url.startsWith('http') ? selectedMedia.url : `http://192.168.179.20:5005${selectedMedia.url}`}
+                      src={selectedMedia.url.startsWith('http') ? selectedMedia.url : `https://ypsbackend.vercel.app${selectedMedia.url}`}
                       type="video/mp4"
                     />
                   </video>
@@ -470,7 +470,7 @@ const MediaGallery = ({
                   <FiFileText size={64} />
                   <p>Document: {selectedMedia.titre}</p>
                   <a 
-                    href={selectedMedia.url.startsWith('http') ? selectedMedia.url : `http://192.168.179.20:5005${selectedMedia.url}`}
+                    href={selectedMedia.url.startsWith('http') ? selectedMedia.url : `https://ypsbackend.vercel.app${selectedMedia.url}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-open"

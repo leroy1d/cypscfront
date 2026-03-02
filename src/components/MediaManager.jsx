@@ -40,7 +40,7 @@ const MediaManager = () => {
   const videoRef = useRef(null);
   const previewVideoRef = useRef(null);
   const token = localStorage.getItem('token');
-  const API_BASE_URL ='http://192.168.179.20:5005';
+  const API_BASE_URL ='https://ypsbackend.vercel.app';
 
   // Charger la bibliothèque média
   useEffect(() => {

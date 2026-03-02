@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { apiService } from '../services/api';
 
-const API_BASE_URL = 'http://192.168.179.20:5005';
+const API_BASE_URL = 'https://ypsbackend.vercel.app';
 
 const BannerAdmin = () => {
   const [slides, setSlides] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { apiService } from '../../backend/api';
+import { apiService } from '../../../backend/api';
 
 const Transparency = () => {
   const [transparencyData, setTransparencyData] = useState([]);
