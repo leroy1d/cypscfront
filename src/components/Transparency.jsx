@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { apiService } from 'https://ypsbackend.vercel.app/backend/api';
+import { apiService } from './api';
 
 const Transparency = () => {
   const [transparencyData, setTransparencyData] = useState([]);
