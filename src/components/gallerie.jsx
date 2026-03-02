@@ -44,7 +44,7 @@ const Gallery = () => {
   const videoRef = useRef(null);
   const previewVideoRef = useRef(null);
   const token = localStorage.getItem('token');
-  const API_BASE_URL = 'https://ypsbackend.vercel.app';
+  
 
   // Charger la bibliothèque média
   useEffect(() => {
@@ -56,7 +56,7 @@ const Gallery = () => {
   const fetchMediaLibrary = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${API_BASE_URL}/api/media/all`);
+      const response = await axios.get(`https://ypsbackend.vercel.app    /api/media/all`);
       setMediaLibrary(response.data.items || []);
     } catch (error) {
       console.error('Erreur chargement bibliothèque:', error);
@@ -104,7 +104,7 @@ const Gallery = () => {
         formDataObj.append('is_featured', formData.is_featured);
         formDataObj.append('ordre', formData.ordre);
 
-        return axios.post(`${API_BASE_URL}/api/media/upload`, formDataObj, {
+        return axios.post(`https://ypsbackend.vercel.app    /api/media/upload`, formDataObj, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
@@ -150,7 +150,7 @@ const Gallery = () => {
     try {
       setUploading(true);
 
-      const response = await axios.post(`${API_BASE_URL}/api/media/url`, {
+      const response = await axios.post(`https://ypsbackend.vercel.app    /api/media/url`, {
         url: urlForm.url,
         titre: urlForm.titre || `Média de ${new Date().toLocaleDateString()}`,
         description: urlForm.description,
@@ -225,7 +225,7 @@ const downloadMedia = async (media) => {
     let mediaUrl = media.url;
     
     if (!media.url.startsWith('http')) {
-      mediaUrl = `${API_BASE_URL}${media.url.startsWith('/') ? media.url : '/' + media.url}`;
+      mediaUrl = `https://ypsbackend.vercel.app/api${media.url.startsWith('/') ? media.url : '/' + media.url}`;
     }
 
     const response = await fetch(mediaUrl, {
@@ -346,7 +346,7 @@ const downloadMedia = async (media) => {
     // Fallback simple
     let mediaUrl = media.url;
     if (!media.url.startsWith('http')) {
-      mediaUrl = `${API_BASE_URL}${media.url.startsWith('/') ? media.url : '/' + media.url}`;
+      mediaUrl = `https://ypsbackend.vercel.app/api${media.url.startsWith('/') ? media.url : '/' + media.url}`;
     }
     window.open(mediaUrl, '_blank');
     
@@ -359,7 +359,7 @@ const downloadMedia = async (media) => {
     if (!confirm('Supprimer ce média ?')) return;
 
     try {
-      await axios.delete(`${API_BASE_URL}/api/media/${id}`, {
+      await axios.delete(`https://ypsbackend.vercel.app/api/media/${id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -430,7 +430,7 @@ const downloadMedia = async (media) => {
       return url;
     }
     
-    return `${API_BASE_URL}${url.startsWith('/') ? url : '/' + url}`;
+    return `https://ypsbackend.vercel.app/api${url.startsWith('/') ? url : '/' + url}`;
   };
 
   // Rendu de l'onglet Upload

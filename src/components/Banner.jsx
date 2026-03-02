@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Banner.css';
 import { Link } from 'react-router-dom';
 
-const API_BASE_URL = 'https://ypsbackend.vercel.app';
+
 
 const Banner = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,7 +17,7 @@ const Banner = () => {
                 setLoading(true);
 
                 // Récupérer tous les paramètres
-                const response = await fetch(`${API_BASE_URL}/api/frontend/settings`);
+                const response = await fetch(`https://ypsbackend.vercel.app    /api/frontend/settings`);
 
                 if (!response.ok) {
                     throw new Error(`Erreur HTTP: ${response.status}`);
@@ -56,22 +56,22 @@ const Banner = () => {
                     setBannerSlides([
                         {
                             text: "Découvrez notre nouvelle collection",
-                            image: `${API_BASE_URL}/uploads/file-1769266049124-16510398.jpg`,
+                            image: `https://ypsbackend.vercel.app/api/uploads/file-1769266049124-16510398.jpg`,
                             alt: "Collection été"
                         },
                         {
                             text: "Offres spéciales -50%",
-                            image: `${API_BASE_URL}/uploads/file-1769868663461-425095722.jpg`,
+                            image: `https://ypsbackend.vercel.app/api/uploads/file-1769868663461-425095722.jpg`,
                             alt: "Promotions"
                         },
                         {
                             text: "Livraison gratuite dès 50€",
-                            image: `${API_BASE_URL}/uploads/file-1769869300719-962729231.jpg`,
+                            image: `https://ypsbackend.vercel.app/api/uploads/file-1769869300719-962729231.jpg`,
                             alt: "Livraison"
                         },
                         {
                             text: "Nouveautés de la semaine",
-                            image: `${API_BASE_URL}/uploads/file-1769868663401-132364244.jpg`,
+                            image: `https://ypsbackend.vercel.app/api/uploads/file-1769868663401-132364244.jpg`,
                             alt: "Nouveautés"
                         }
                     ]);
@@ -85,22 +85,22 @@ const Banner = () => {
                 setBannerSlides([
                     {
                         text: "Découvrez notre nouvelle collection",
-                        image: `${API_BASE_URL}/uploads/file-1769266049124-16510398.jpg`,
+                        image: `https://ypsbackend.vercel.app/api/uploads/file-1769266049124-16510398.jpg`,
                         alt: "Collection été"
                     },
                     {
                         text: "Offres spéciales -50%",
-                        image: `${API_BASE_URL}/uploads/file-1769868663461-425095722.jpg`,
+                        image: `https://ypsbackend.vercel.app/api/uploads/file-1769868663461-425095722.jpg`,
                         alt: "Promotions"
                     },
                     {
                         text: "Livraison gratuite dès 50€",
-                        image: `${API_BASE_URL}/uploads/file-1769869300719-962729231.jpg`,
+                        image: `https://ypsbackend.vercel.app/api/uploads/file-1769869300719-962729231.jpg`,
                         alt: "Livraison"
                     },
                     {
                         text: "Nouveautés de la semaine",
-                        image: `${API_BASE_URL}/uploads/file-1769868663401-132364244.jpg`,
+                        image: `https://ypsbackend.vercel.app/api/uploads/file-1769868663401-132364244.jpg`,
                         alt: "Nouveautés"
                     }
                 ]);
@@ -117,7 +117,7 @@ const Banner = () => {
         if (!imagePath) return '';
         if (imagePath.startsWith('http')) return imagePath;
         if (imagePath.startsWith('/uploads')) {
-            return `${API_BASE_URL}${imagePath}`;
+            return `https://ypsbackend.vercel.app/api${imagePath}`;
         }
         return imagePath;
     };

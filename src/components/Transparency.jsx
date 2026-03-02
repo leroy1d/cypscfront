@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
+
 
 const Transparency = () => {
   const [transparencyData, setTransparencyData] = useState([]);
@@ -14,7 +14,7 @@ const Transparency = () => {
   useEffect(() => {
     const fetchTransparencyData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/frontend/transparence`);
+        const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/transparence`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         setTransparencyData(data);

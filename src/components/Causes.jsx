@@ -20,7 +20,7 @@ const Causes = () => {
   const [error, setError] = useState(null);
   const [selectedCause, setSelectedCause] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const API_BASE_URL = 'https://ypsbackend.vercel.app';
+  
 
 
   useEffect(() => {

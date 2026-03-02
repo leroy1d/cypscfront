@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const Actions = () => {
   const [actions, setActions] = useState([]);
@@ -9,7 +8,7 @@ const Actions = () => {
   useEffect(() => {
     const fetchActions = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/frontend/actions`);
+        const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/actions`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
         setActions(data);

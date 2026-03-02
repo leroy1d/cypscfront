@@ -7,7 +7,7 @@ const Hero = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const API_BASE_URL = 'https://ypsbackend.vercel.app';
+  
 
 // Modifier la fonction fetchBackgrounds (vers ligne 20-40)
 
@@ -15,7 +15,7 @@ useEffect(() => {
   const fetchBackgrounds = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/api/frontend/settings`);
+      const res = await fetch(`https://ypsbackend.vercel.app/api/frontend/settings`);
       
       if (!res.ok) throw new Error('Erreur API');
 
@@ -32,12 +32,12 @@ useEffect(() => {
           const cleanImg = img.startsWith('/') ? img : `/${img}`;
           console.log('URL de l\'image: cleanImg', cleanImg);
           
-          return `${API_BASE_URL}${cleanImg}`;
+          return `https://ypsbackend.vercel.app/api${cleanImg}`;
         });
       } else {
         // Fallback si pas d'images
         console.log('Aucun background trouvé, utilisation du fallback');
-        // imageUrls = [`${API_BASE_URL}/uploads/default-hero.jpg`];
+        // imageUrls = [`https://ypsbackend.vercel.app/api/uploads/default-hero.jpg`];
       }
       
       // Précharger les images
@@ -47,7 +47,7 @@ useEffect(() => {
     } catch (err) {
       console.error('Erreur chargement hero:', err);
       setError(true);
-      setBackgrounds([`${API_BASE_URL}${backgrounds}`]);
+      setBackgrounds([`https://ypsbackend.vercel.app/api${backgrounds}`]);
       
       setError(false);
     } finally {

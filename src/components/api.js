@@ -1,10 +1,10 @@
-const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
+
 
 export const apiService = {
   // Test de connexion
   async testConnection() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/test`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/test`);
       return await response.json();
     } catch (error) {
       console.error('Erreur de connexion à l\'API:', error);
@@ -15,7 +15,7 @@ export const apiService = {
   // Actions
   async getActions() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/actions`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/actions`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -28,7 +28,7 @@ export const apiService = {
   async getCausesAdmin() {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/causes`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/causes`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ export const apiService = {
   async getCauseById(id) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/causes/${id}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/causes/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ export const apiService = {
   async createCause(formData) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/causes`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/causes`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -80,7 +80,7 @@ export const apiService = {
   async updateCause(id, formData) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/causes/${id}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/causes/${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -97,7 +97,7 @@ export const apiService = {
   async deleteCause(id) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/causes/${id}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/causes/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -114,7 +114,7 @@ export const apiService = {
   async updateCauseOrder(id, direction) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/causes/${id}/order`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/causes/${id}/order`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -132,7 +132,7 @@ export const apiService = {
   // FAQ
   async getFAQ() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/faq`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/faq`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -144,7 +144,7 @@ export const apiService = {
   // Témoignages
   async getTestimonials() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/temoignages`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/temoignages`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -156,7 +156,7 @@ export const apiService = {
   // Statistiques d'impact
   async getImpactStats() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/statistiques`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/statistiques`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -168,7 +168,7 @@ export const apiService = {
   // Données de transparence
   async getTransparencyData() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/transparence`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/transparence`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -180,7 +180,7 @@ export const apiService = {
   // Fonction générique pour les requêtes
   async fetchData(endpoint) {
     try {
-      const response = await fetch(`${API_BASE_URL}/${endpoint}`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/${endpoint}`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -191,7 +191,7 @@ export const apiService = {
 
   async getMedias() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/medias`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/medias`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -203,7 +203,7 @@ export const apiService = {
   // Upload depuis l'appareil
   async uploadFromDevice(formData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/media/upload`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/media/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -220,7 +220,7 @@ export const apiService = {
   // Upload via URL
   async uploadFromUrl(data) {
     try {
-      const response = await fetch(`${API_BASE_URL}/media/url`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/media/url`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -239,7 +239,7 @@ export const apiService = {
   async getAllMedias(params = {}) {
     try {
       const query = new URLSearchParams(params).toString();
-      const response = await fetch(`${API_BASE_URL}/media/all?${query}`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/media/all?${query}`);
       return await response.json();
     } catch (error) {
       console.error('Erreur récupération médias:', error);
@@ -250,7 +250,7 @@ export const apiService = {
   // Supprimer un média
   async deleteMedia(id) {
     try {
-      const response = await fetch(`${API_BASE_URL}/medias/${id}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/medias/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -268,7 +268,7 @@ export const apiService = {
   // Récupérer les slides pour le frontend
   async getBannerSlides() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/banner-slides`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/banner-slides`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -281,7 +281,7 @@ export const apiService = {
   async getAdminBannerSlides() {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slides`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slides`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -299,7 +299,7 @@ export const apiService = {
   async updateBannerSlide(index, data) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slide/${index}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slide/${index}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -318,7 +318,7 @@ export const apiService = {
   async addBannerSlide(data) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slide`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slide`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -337,7 +337,7 @@ export const apiService = {
   async deleteBannerSlide(index) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slide/${index}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slide/${index}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -355,7 +355,7 @@ export const apiService = {
   async reorderBannerSlides(slides) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slides/reorder`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slides/reorder`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -415,7 +415,7 @@ export const apiService = {
   // Paramètres du site
   async getSettings() {
     try {
-      const response = await fetch(`${API_BASE_URL}/frontend/settings`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/frontend/settings`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -427,7 +427,7 @@ export const apiService = {
   async saveSetting(key, value) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/settings`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/settings`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -444,7 +444,7 @@ export const apiService = {
 
   async getLogo() {
     try {
-      const response = await fetch(`${API_BASE_URL}/logo`);
+      const response = await fetch(`https://ypsbackend.vercel.app/api/logo`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
@@ -456,7 +456,7 @@ export const apiService = {
   async uploadLogo(formData) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/logo/upload`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/logo/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -473,7 +473,7 @@ export const apiService = {
   async uploadHeroBackground(formData) {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/settings/upload/hero-background`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/settings/upload/hero-background`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

@@ -16,7 +16,6 @@ import {
 } from 'react-icons/fi';
 import axios from 'axios';
 
-const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const CausesManager = () => {
   const [causes, setCauses] = useState([]);
@@ -47,7 +46,7 @@ const CausesManager = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/admin/causes`, {
+      const response = await axios.get(`https://ypsbackend.vercel.app/api/admin/causes`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -127,7 +126,7 @@ const CausesManager = () => {
     try {
       setLoadingAction(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_BASE_URL}/admin/causes/${cause.id}`, {
+      const response = await axios.get(`https://ypsbackend.vercel.app/api/admin/causes/${cause.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -172,7 +171,7 @@ const CausesManager = () => {
     try {
       setLoadingAction(true);
       const token = localStorage.getItem('token');
-      await axios.delete(`${API_BASE_URL}/admin/causes/${deleteConfirm.id}`, {
+      await axios.delete(`https://ypsbackend.vercel.app/api/admin/causes/${deleteConfirm.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -219,7 +218,7 @@ const CausesManager = () => {
 
       if (editingCause) {
         // Mise à jour
-        await axios.put(`${API_BASE_URL}/admin/causes/${editingCause.id}`, formDataToSend, {
+        await axios.put(`https://ypsbackend.vercel.app/api/admin/causes/${editingCause.id}`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -228,7 +227,7 @@ const CausesManager = () => {
         alert('Cause mise à jour avec succès');
       } else {
         // Création
-        await axios.post(`${API_BASE_URL}/admin/causes`, formDataToSend, {
+        await axios.post(`https://ypsbackend.vercel.app/api/admin/causes`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -254,7 +253,7 @@ const CausesManager = () => {
     try {
       setLoadingAction(true);
       const token = localStorage.getItem('token');
-      await axios.put(`${API_BASE_URL}/admin/causes/${causeId}/order`, 
+      await axios.put(`https://ypsbackend.vercel.app/api/admin/causes/${causeId}/order`, 
         { direction },
         {
           headers: {
@@ -295,7 +294,7 @@ const CausesManager = () => {
         formData.append('icone', filename);
       }
       
-      await axios.put(`${API_BASE_URL}/admin/causes/${cause.id}`, formData, {
+      await axios.put(`https://ypsbackend.vercel.app/api/admin/causes/${cause.id}`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

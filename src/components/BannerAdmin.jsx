@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const BannerAdmin = () => {
   const [slides, setSlides] = useState([]);
@@ -16,7 +15,7 @@ const BannerAdmin = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slides`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slides`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -97,7 +96,7 @@ const BannerAdmin = () => {
   const updateBannerSlide = async (slideIndex, data) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slide/${slideIndex}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slide/${slideIndex}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -145,7 +144,7 @@ const BannerAdmin = () => {
         image: ''
       };
 
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slide`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slide`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -178,7 +177,7 @@ const BannerAdmin = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slide/${slideIndex}`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slide/${slideIndex}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -222,7 +221,7 @@ const BannerAdmin = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/admin/banner-slides/reorder`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/admin/banner-slides/reorder`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
