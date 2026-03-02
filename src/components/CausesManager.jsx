@@ -14,7 +14,7 @@ import {
   FiCheckCircle,
   FiXCircle
 } from 'react-icons/fi';
-import { apiService } from '../../../backend/api';
+import { apiService } from 'https://ypsbackend.vercel.app/backend/api';
 import axios from 'axios';
 
 const CausesManager = () => {

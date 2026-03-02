@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiService } from '../../../backend/api';
+import { apiService } from 'https://ypsbackend.vercel.app/backend/api';
 
 const FAQ = () => {
   const [faqItems, setFaqItems] = useState([]);
