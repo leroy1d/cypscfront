@@ -14,8 +14,9 @@ import {
   FiCheckCircle,
   FiXCircle
 } from 'react-icons/fi';
-import { apiService } from './api';
 import axios from 'axios';
+
+const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const CausesManager = () => {
   const [causes, setCauses] = useState([]);
@@ -45,9 +46,8 @@ const CausesManager = () => {
   const fetchCauses = async () => {
     try {
       setLoading(true);
-      // Utiliser directement axios pour plus de contrôle
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://ypsbackend.vercel.app/api/admin/causes', {
+      const response = await axios.get(`${API_BASE_URL}/admin/causes`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -127,7 +127,7 @@ const CausesManager = () => {
     try {
       setLoadingAction(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`https://ypsbackend.vercel.app/api/admin/causes/${cause.id}`, {
+      const response = await axios.get(`${API_BASE_URL}/admin/causes/${cause.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -172,13 +172,13 @@ const CausesManager = () => {
     try {
       setLoadingAction(true);
       const token = localStorage.getItem('token');
-      await axios.delete(`https://ypsbackend.vercel.app/api/admin/causes/${deleteConfirm.id}`, {
+      await axios.delete(`${API_BASE_URL}/admin/causes/${deleteConfirm.id}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
       
-      alert('Pilier supprimée avec succès');
+      alert('Pilier supprimé avec succès');
       setDeleteConfirm(null);
       fetchCauses();
     } catch (error) {
@@ -217,10 +217,9 @@ const CausesManager = () => {
         formDataToSend.append('icone', formData.icone);
       }
 
-      let response;
       if (editingCause) {
         // Mise à jour
-        response = await axios.put(`https://ypsbackend.vercel.app/api/admin/causes/${editingCause.id}`, formDataToSend, {
+        await axios.put(`${API_BASE_URL}/admin/causes/${editingCause.id}`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -229,7 +228,7 @@ const CausesManager = () => {
         alert('Cause mise à jour avec succès');
       } else {
         // Création
-        response = await axios.post('https://ypsbackend.vercel.app/api/admin/causes', formDataToSend, {
+        await axios.post(`${API_BASE_URL}/admin/causes`, formDataToSend, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -255,7 +254,7 @@ const CausesManager = () => {
     try {
       setLoadingAction(true);
       const token = localStorage.getItem('token');
-      await axios.put(`https://ypsbackend.vercel.app/api/admin/causes/${causeId}/order`, 
+      await axios.put(`${API_BASE_URL}/admin/causes/${causeId}/order`, 
         { direction },
         {
           headers: {
@@ -296,7 +295,7 @@ const CausesManager = () => {
         formData.append('icone', filename);
       }
       
-      await axios.put(`https://ypsbackend.vercel.app/api/admin/causes/${cause.id}`, formData, {
+      await axios.put(`${API_BASE_URL}/admin/causes/${cause.id}`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
@@ -335,7 +334,7 @@ const CausesManager = () => {
               </button>
             </div>
             <div className="modal-body">
-              <p>Êtes-vous sûr de vouloir supprimer la pilier :</p>
+              <p>Êtes-vous sûr de vouloir supprimer le pilier :</p>
               <p className="delete-item-name"><strong>{deleteConfirm.nom}</strong></p>
               <p className="text-warning">Cette action est irréversible !</p>
             </div>
@@ -494,7 +493,7 @@ const CausesManager = () => {
                       className="form-control"
                       rows="4"
                       required
-                      placeholder="Décrivez cette cause..."
+                      placeholder="Décrivez ce pilier..."
                       disabled={loadingAction}
                     />
                   </div>
@@ -578,12 +577,12 @@ const CausesManager = () => {
                   <td colSpan="7" style={{ textAlign: 'center', padding: '40px' }}>
                     <div className="empty-state">
                       <FiEye size={40} style={{ marginBottom: '10px', opacity: 0.5 }} />
-                      <p>Aucune Pilier trouvée</p>
+                      <p>Aucun pilier trouvé</p>
                       <button 
                         className="btn btn-primary"
                         onClick={handleCreateClick}
                       >
-                        <FiPlus /> Créer votre première Pilier
+                        <FiPlus /> Créer votre premier pilier
                       </button>
                     </div>
                   </td>

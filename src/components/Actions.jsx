@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { apiService } from './api';
+
+const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const Actions = () => {
   const [actions, setActions] = useState([]);
@@ -8,7 +9,9 @@ const Actions = () => {
   useEffect(() => {
     const fetchActions = async () => {
       try {
-        const data = await apiService.getActions();
+        const response = await fetch(`${API_BASE_URL}/frontend/actions`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
         setActions(data);
       } catch (error) {
         console.error('Erreur lors du chargement des actions:', error);

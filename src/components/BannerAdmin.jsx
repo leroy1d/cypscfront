@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { apiService } from '../services/api';
 
-const API_BASE_URL = 'https://ypsbackend.vercel.app';
+const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const BannerAdmin = () => {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
-  const [editingSlide, setEditingSlide] = useState(null);
   const [uploadingFor, setUploadingFor] = useState(null);
 
   useEffect(() => {
@@ -17,7 +15,15 @@ const BannerAdmin = () => {
   const loadSlides = async () => {
     try {
       setLoading(true);
-      const data = await apiService.getAdminBannerSlides();
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/admin/banner-slides`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!response.ok) throw new Error('Erreur chargement');
+      const data = await response.json();
       setSlides(data);
     } catch (error) {
       setMessage({
@@ -33,7 +39,7 @@ const BannerAdmin = () => {
     if (!url) return null;
     if (url.startsWith('http')) return url;
     if (url.startsWith('/uploads')) {
-      return `${API_BASE_URL}${url}`;
+      return `https://ypsbackend.vercel.app${url}`;
     }
     return url;
   };
@@ -49,7 +55,7 @@ const BannerAdmin = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch(`${API_BASE_URL}/api/upload`, {
+      const response = await fetch(`https://ypsbackend.vercel.app/api/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -62,7 +68,7 @@ const BannerAdmin = () => {
         const fileUrl = data.file.url;
 
         // Mettre à jour le slide
-        await apiService.updateBannerSlide(slideIndex, { image: fileUrl });
+        await updateBannerSlide(slideIndex, { image: fileUrl });
 
         // Mettre à jour l'état local
         setSlides(prev => prev.map(slide =>
@@ -88,6 +94,24 @@ const BannerAdmin = () => {
     }
   };
 
+  const updateBannerSlide = async (slideIndex, data) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/admin/banner-slide/${slideIndex}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Erreur mise à jour slide:', error);
+      throw error;
+    }
+  };
+
   const handleTextChange = (slideIndex, newText) => {
     setSlides(prev => prev.map(slide =>
       slide.index === slideIndex ? { ...slide, text: newText } : slide
@@ -97,7 +121,7 @@ const BannerAdmin = () => {
   const saveText = async (slideIndex) => {
     try {
       const slide = slides.find(s => s.index === slideIndex);
-      await apiService.updateBannerSlide(slideIndex, { text: slide.text });
+      await updateBannerSlide(slideIndex, { text: slide.text });
 
       setMessage({
         type: 'success',
@@ -115,12 +139,22 @@ const BannerAdmin = () => {
 
   const addNewSlide = async () => {
     try {
+      const token = localStorage.getItem('token');
       const newSlide = {
         text: 'Nouveau slide',
         image: ''
       };
 
-      const result = await apiService.addBannerSlide(newSlide);
+      const response = await fetch(`${API_BASE_URL}/admin/banner-slide`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newSlide)
+      });
+
+      const result = await response.json();
 
       if (result.success) {
         setSlides(prev => [...prev, result.slide]);
@@ -143,12 +177,24 @@ const BannerAdmin = () => {
     }
 
     try {
-      await apiService.deleteBannerSlide(slideIndex);
-      setSlides(prev => prev.filter(slide => slide.index !== slideIndex));
-      setMessage({
-        type: 'success',
-        text: 'Slide supprimé'
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/admin/banner-slide/${slideIndex}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSlides(prev => prev.filter(slide => slide.index !== slideIndex));
+        setMessage({
+          type: 'success',
+          text: 'Slide supprimé'
+        });
+      }
     } catch (error) {
       setMessage({
         type: 'error',
@@ -175,8 +221,23 @@ const BannerAdmin = () => {
     }));
 
     try {
-      await apiService.reorderBannerSlides(reorderData);
-      setSlides(newSlides);
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_BASE_URL}/admin/banner-slides/reorder`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ slides: reorderData })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSlides(newSlides);
+      } else {
+        throw new Error('Erreur réorganisation');
+      }
     } catch (error) {
       setMessage({
         type: 'error',

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { apiService } from './api';
+
+const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const Transparency = () => {
   const [transparencyData, setTransparencyData] = useState([]);
@@ -13,7 +14,9 @@ const Transparency = () => {
   useEffect(() => {
     const fetchTransparencyData = async () => {
       try {
-        const data = await apiService.getTransparencyData();
+        const response = await fetch(`${API_BASE_URL}/frontend/transparence`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
         setTransparencyData(data);
       } catch (error) {
         console.error('Erreur lors du chargement des données de transparence:', error);
@@ -366,43 +369,6 @@ const Transparency = () => {
           <h2>Transparence et Gouvernance</h2>
           <p>Nous croyons en une gestion rigoureuse et transparente de chaque euro collecté. Découvrez comment sont utilisés vos dons.</p>
         </div>
-
-        {/* <div className="transparency-grid">
-          {transparencyCards.map((card, index) => (
-            <div className="transparency-card" key={index}>
-              <i className={`${card.icon} transparency-icon`}></i>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-              
-              {card.value && (
-                <>
-                  <div className="transparency-value">
-                    {card.value}
-                  </div>
-                  <p className="transparency-subtext">{card.subtext}</p>
-                </>
-              )}
-              
-              {card.link && (
-                <div className="transparency-link">
-                  <a href="/documents/rapport-financier.pdf" target="_blank" rel="noopener noreferrer">
-                    <i className={card.link.icon}></i> {card.link.text}
-                  </a>
-                </div>
-              )}
-              
-              {card.badges && (
-                <div className="badge-container">
-                  {card.badges.map((badge, idx) => (
-                    <div key={idx} className="transparency-badge">
-                      {badge}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div> */}
 
         <div className="financial-chart">
           <h3>Répartition de nos ressources</h3>

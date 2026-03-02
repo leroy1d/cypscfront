@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { apiService } from './api';
+
+const API_BASE_URL = 'https://ypsbackend.vercel.app/api';
 
 const FAQ = () => {
   const [faqItems, setFaqItems] = useState([]);
@@ -12,7 +13,9 @@ const FAQ = () => {
   useEffect(() => {
     const fetchFAQ = async () => {
       try {
-        const data = await apiService.getFAQ();
+        const response = await fetch(`${API_BASE_URL}/frontend/faq`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
         setFaqItems(data);
         setFilteredItems(data);
       } catch (error) {
